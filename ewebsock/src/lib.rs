@@ -83,7 +83,10 @@ pub enum WsEvent {
 
 /// Receiver for incoming [`WsEvent`]s.
 pub struct WsReceiver {
+    #[cfg(not(feature = "tokio"))]
     rx: std::sync::mpsc::Receiver<WsEvent>,
+    #[cfg(feature = "tokio")]
+    rx: tokio::sync::mpsc::UnboundedReceiver<WsEvent>,
 }
 
 impl WsReceiver {
@@ -96,7 +99,10 @@ impl WsReceiver {
     ///
     /// This can be used to wake up the UI thread.
     pub fn new_with_callback(wake_up: impl Fn() + Send + Sync + 'static) -> (Self, EventHandler) {
+        #[cfg(not(feature = "tokio"))]
         let (tx, rx) = std::sync::mpsc::channel();
+        #[cfg(feature = "tokio")]
+        let (tx, rx) = tokio::sync::mpsc::unbounded_channel();
         let on_event = Box::new(move |event| {
             wake_up(); // wake up UI thread
             if tx.send(event).is_ok() {
@@ -110,7 +116,7 @@ impl WsReceiver {
     }
 
     /// Try receiving a new event without blocking.
-    pub fn try_recv(&self) -> Option<WsEvent> {
+    pub fn try_recv(&mut self) -> Option<WsEvent> {
         self.rx.try_recv().ok()
     }
 }
