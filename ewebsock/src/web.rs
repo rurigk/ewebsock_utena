@@ -57,6 +57,11 @@ impl WsSender {
         }
     }
 
+    /// Check if connection is closed.
+    pub fn is_closed(&mut self) -> bool {
+        !self.socket.is_some()
+    }
+
     /// Forget about this sender without closing the connection.
     pub fn forget(mut self) {
         self.socket = None;

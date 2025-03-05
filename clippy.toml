@@ -5,8 +5,6 @@
 # -----------------------------------------------------------------------------
 # Section identical to scripts/clippy_wasm/clippy.toml:
 
-msrv = "1.76"
-
 allow-unwrap-in-tests = true
 
 # https://doc.rust-lang.org/nightly/clippy/lint_configuration.html#avoid-breaking-exported-api
