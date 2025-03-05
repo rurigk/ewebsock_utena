@@ -10,3 +10,5 @@ dist/
 
 # https://github.com/lycheeverse/lychee
 .lycheecache
+
+.vscode

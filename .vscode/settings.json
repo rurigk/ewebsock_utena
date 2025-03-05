@@ -1,6 +1,0 @@
-{
-    "rust-analyzer.cargo.features": [
-        "tokio"
-    ],
-    // "rust-analyzer.cargo.target": "wasm32-unknown-unknown"
-}
