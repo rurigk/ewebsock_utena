@@ -15,6 +15,7 @@ use crate::{EventHandler, Options, Result, WsEvent, WsMessage};
 /// This is how you send [`WsMessage`]s to the server.
 ///
 /// When the last clone of this is dropped, the connection is closed.
+#[derive(Debug)]
 pub struct WsSender {
     tx: Option<std::sync::mpsc::Sender<WsMessage>>,
 }

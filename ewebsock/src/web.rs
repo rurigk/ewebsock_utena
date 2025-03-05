@@ -17,6 +17,7 @@ fn string_from_js_string(s: js_sys::JsString) -> String {
 /// This is how you send messages to the server.
 ///
 /// When this is dropped, the connection is closed.
+#[derive(Debug)]
 pub struct WsSender {
     socket: Option<Rc<web_sys::WebSocket>>,
 }

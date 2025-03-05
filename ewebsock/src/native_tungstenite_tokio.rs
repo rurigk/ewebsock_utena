@@ -6,6 +6,7 @@ use crate::{EventHandler, Options, Result, WsEvent, WsMessage};
 /// This is how you send [`WsMessage`]s to the server.
 ///
 /// When this is dropped, the connection is closed.
+#[derive(Debug)]
 pub struct WsSender {
     tx: Option<tokio::sync::mpsc::Sender<WsMessage>>,
 }
