@@ -47,7 +47,7 @@ impl WsSender {
     }
 
     /// Check if connection is closed.
-    pub fn is_closed(&mut self) -> bool {
+    pub fn is_closed(&self) -> bool {
         !self.tx.is_some()
     }
 
